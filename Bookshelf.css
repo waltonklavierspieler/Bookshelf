@@ -1,0 +1,38 @@
+.container {
+}
+
+.header {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.name {
+}
+
+.button-row {
+}
+
+.list {
+}
+
+#book-button {
+}
+
+#bookFormContainer {
+}
+
+.displayEntry {
+}
+
+.bookTitles {
+}
+
+.bookAuthors {
+}
+
+.bookPages {
+}
+
+.bookGenre {
+}
