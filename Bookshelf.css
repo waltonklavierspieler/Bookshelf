@@ -1,38 +1,123 @@
+body {
+	background: rgb(209, 235, 228);
+}
+
+* {
+	box-sizing: border-box;
+}
+
 .container {
+	font: Helvetica-Bold;
+	display: flex;
+	flex-direction: column;
 }
 
 .header {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
+	padding-left: 3vw;
+	padding-right: 3vw;
+	background: rgb(165, 198, 212);
 }
 
-.name {
+.libraryName, .totals-counter {
+	font-size: max(5vw, 30px);
 }
 
 .button-row {
+	display: flex;
+	padding-top: 2vh;
+	padding-bottom: 2vh;
+	justify-content: center;
+	background: rgb(165, 198, 212);
 }
 
 .list {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-gap: 10px;
+	padding: 10px;
 }
 
-#book-button {
+fieldset {
+	border: none;
+}
+
+.newCard {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: center;
+	width: 33vw;
+	border: 1px solid rgb(27, 36, 8);
+	background: rgb(223, 242, 182);
+	border-radius: 6px;
+	padding-top: 1em;
+	padding-bottom: 1em;
+}
+
+.displayEntry {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	width: 33vw;
+	height: 33vh;
+	border: 1px solid rgb(27, 36, 8);
+	background-image: url("parchment.jpg");
+	border-radius: 6px;
+	padding-top: 1em;
+	padding-bottom: 1em;
+}
+
+#addBookButton {
+	background-color: rgb(32, 27, 168);
+	color: white;
+	display: inline-block;
+	font-size: 1em;
+	padding: 0.75em 1em;
+	text-align: center;
+	cursor: pointer;
+	border: none;
+	border-radius: 8px;
+}
+
+#removeBookButton {
+	background-color: rgb(184, 32, 2);
+	color: white;
+	display: inline-block;
+	font-size: 0.85em;
+	padding: 0.5em 0.75em;
+	text-align: center;
+	cursor: pointer;
+	border: none;
+	border-radius: 8px;
 }
 
 #bookFormContainer {
 }
 
-.displayEntry {
-}
-
 .bookTitles {
+	font-size: 2em;
+	font-weight: bold;
 }
 
+.bookBy {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
+	font-size: 1em;
+	font-style: italic;
+}
 .bookAuthors {
+	font-size: 1.5em;
+	font-weight: bold;
+	font-style: normal;
+	padding-top: 10px;
 }
 
-.bookPages {
+.bookPages, .bookGenre {
 }
 
-.bookGenre {
-}
