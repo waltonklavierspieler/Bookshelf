@@ -12,44 +12,53 @@ function Book(title, author, pages, genre) {
 function displayBook() {
 	var counter = 0;
 	const parentDiv = document.querySelector('.list');
-
+	
 	//create new div for each entry
 		parentDiv.innerHTML = '';
 	library.forEach((newEntry, index) => {
-		counter++;
 		const book = document.createElement('div');
 		book.setAttribute('class', 'newCard');
 		book.classList.add('displayEntry');
-
+	
 		//create a div for each element of each book for styling
 		const bookTitle = document.createElement('div');
 		bookTitle.className = 'bookTitles';
 		bookTitle.textContent = newEntry.title;
-
+		
 		const bookBy = document.createElement('p');
 		bookBy.className = 'bookBy';
 		bookBy.textContent = 'by';
-
+		
 		const bookAuthor = document.createElement('div');
 		bookAuthor.className = 'bookAuthors';
 		bookAuthor.textContent = newEntry.author;
-
+		
 		const bookPages = document.createElement('div');
 		bookPages.className = 'bookPages';
 		bookPages.textContent = newEntry.pages + ' pages';
-
+		
 		const bookGenre = document.createElement('div');
 		bookGenre.className = 'bookGenre';
 		bookGenre.textContent = newEntry.genre;
-
+		
 		//add a new value to the book to access its index;
 		newEntry.removalIndex = index;
-
+		
+		const bottomRow = document.createElement('div');
+		bottomRow.setAttribute('class', 'bottomRow');
+		const readOrNot = document.createElement('div');
+		readOrNot.innerHTML = `
+		    <label class="toggle">
+				<label class="readCheck">Unread</label>
+			    <input type="checkbox" id="toggleSwitch">
+				<span class="slider"></span>
+			</label>
+			`;
 		const remove = document.createElement('button');
 		remove.setAttribute('id', 'removeBookButton');
 		remove.addEventListener('click', deleteBook);
-		remove.textContent = 'Remove entry';
-
+		remove.textContent = 'Remove';
+		
 		//append the sub divs
 		book.appendChild(bookTitle);
 		bookBy.appendChild(bookAuthor);
@@ -57,12 +66,28 @@ function displayBook() {
 		//book.appendChild(bookAuthor);
 		book.appendChild(bookPages);
 		book.appendChild(bookGenre);
-		book.appendChild(remove);
-
+		bottomRow.append(readOrNot);
+		bottomRow.append(remove);
+		book.appendChild(bottomRow);
+		
 		//append the whole entry to the mainline
 		parentDiv.appendChild(book);
+		counter++;
 	});
-
+	
+	const toggleSwitch = document.getElementById("toggleSwitch");
+	toggleSwitch.addEventListener("change", () => {
+		const toggleText = document.querySelector('.readCheck');
+	    if (toggleSwitch.checked) {
+		    // Handle the checked state action here
+		    toggleText.innerText = "Read!";
+			
+	    } else {
+		    // Handle the unchecked state action here
+		    toggleText.innerText = "Unread";
+	    }
+	});
+	
 	const bookTally = document.getElementById('books-total');
 	bookTally.innerHTML = 'Books in your library: ' + counter;
 }
@@ -77,13 +102,13 @@ function addBook() {
 	newForm.innerHTML = `
 		<label for="title">Title:</label>
 		<input type="text" id="title" required><br>
-
+		
 		<label for="author">Author:</label>
 		<input type="text" id="author" required><br>
-
+		
 		<label for="pages">Pages:</label>
 		<input type="number" id="pages" required><br>
-
+		
 		<fieldset>
 			<input type="radio" id="sci-fi" name="genre" value="Sci-fi">
 			<label for="sci-fi">Sci-Fi</label><br>
@@ -96,20 +121,20 @@ function addBook() {
 			<input type="radio" id="non-fiction" name="genre" value="Non-fiction">
 			<label for="non-fiction">Non-fiction</label><br>
 		</fieldset>
-
+		
 		<button id="addBookButton" type="submit">+ Add book</button>
 	`;
-
+	
 	newForm.onsubmit = (event) =>  {
 		event.preventDefault();
-
+		
 		const title = newForm.querySelector("#title").value;
 		const author = newForm.querySelector("#author").value;
 		const pages = newForm.querySelector("#pages").value;
 		const genre = newForm.querySelector('input[name=genre]:checked').value;
 		const newBook = new Book(title, author, pages, genre);
         library.push(newBook);
-
+		
 		displayBook();
 		newForm.reset()
 	}
@@ -123,3 +148,7 @@ function deleteBook(index) {
 }
 
 
+
+
+
+	
